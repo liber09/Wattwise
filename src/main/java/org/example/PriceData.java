@@ -1,26 +1,36 @@
 package org.example;
 
-import java.util.ArrayList;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class PriceData {
 
     static Scanner scanner = new Scanner(System.in);
 
-    public static void getDataFromUser() {
+    public static Map getDataFromUser() {
 
-        ArrayList<Integer> userPriceList = new ArrayList<Integer>();
+        Map userPriceList = new HashMap<>();
+        String timeInterval;
 
         for(int i = 0; i <= 23; i++) {
             if (i < 9) {
-                System.out.println("Enter price for hours 0" + i + " - 0" + (i + 1));
+                timeInterval = "0" + i + " - 0" + (i + 1);
+                System.out.println("Enter price for hours " + timeInterval);
             } else if (i == 9) {
-                System.out.println("Enter price for hours 0" + i + " - " + (i + 1));
-            } else {
-                System.out.println("Enter price for hours " + i + " - " + (i + 1));
+                timeInterval = i + " - " + (i + 1);
+                System.out.println("Enter price for hours 0" + timeInterval);
+            }else if(i == 23) {
+                timeInterval = i + " - 00";
+                System.out.println("Enter price for hours " + timeInterval);
+            }else {
+                timeInterval = i + " - " + (i + 1);
+                System.out.println("Enter price for hours " + timeInterval);
             }
-            userPriceList.add(scanner.nextInt());
+            userPriceList.put(timeInterval, scanner.nextInt());
         }
         System.out.println("Thanks for your data..");
+        return userPriceList;
     }
 }
