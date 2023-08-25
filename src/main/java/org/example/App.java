@@ -1,7 +1,6 @@
 package org.example;
 
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,7 +20,7 @@ public class App {
                     System.out.println(userPriceList);
                     break;
                 case "2":
-
+                    Calculator.maxMinAverage(userPriceList);
 
                     break;
             }
