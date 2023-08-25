@@ -6,7 +6,15 @@ import java.util.Map;
 public class Calculator {
 
     public static void maxMinAverage(Map<String, Integer> userPriceList) {
+        System.out.println("The least expensive hour this day is between " + getMinPrice(userPriceList) + " cent per kWh");
         System.out.println("The most expensive hour this day is between " + getMaxPrice(userPriceList) + " cent per kWh");
+    }
+
+    private static String getMinPrice(Map<String, Integer> userPriceList) {
+        String minKey = Collections.min(userPriceList.entrySet(),
+                Map.Entry.comparingByValue()).getKey();
+        Integer minValue = userPriceList.get(minKey);
+        return minKey + ", " + minValue;
     }
 
     private static String getMaxPrice(Map<String, Integer> userPriceList) {
