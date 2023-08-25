@@ -1,6 +1,5 @@
 package org.example;
 
-import java.text.DecimalFormat;
 import java.util.*;
 
 public class Calculator {
@@ -11,7 +10,7 @@ public class Calculator {
         System.out.println("Den dyraste timmen idag är mellan: " +
                 getMaxPrice(userPriceList) + " öre per kWh");
         System.out.println("Det genomsnittliga priset idag är: " +
-                getAveragePrice(userPriceList) + " öre per kWh");
+                String.format("%.2f", getAveragePrice(userPriceList)) + " öre per kWh");
     }
 
     public static void getSortedPriceList(
@@ -47,9 +46,9 @@ public class Calculator {
         return maxKey + ", " + maxValue;
     }
 
-    private static String getAveragePrice(Map<String, Integer> userPriceList) {
-        return String.valueOf(userPriceList.values()
+    private static Double getAveragePrice(Map<String, Integer> userPriceList) {
+        return userPriceList.values()
                 .stream().mapToDouble(integer -> integer)
-                .average().orElse(0.0));
+                .average().orElse(0.0);
     }
 }
