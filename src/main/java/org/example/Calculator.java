@@ -1,17 +1,36 @@
 package org.example;
 
-import java.util.Collections;
-import java.util.Map;
+import java.text.DecimalFormat;
+import java.util.*;
 
 public class Calculator {
 
     public static void maxMinAverage(Map<String, Integer> userPriceList) {
-        System.out.println("The least expensive hour this day is between " +
-                getMinPrice(userPriceList) + " cent per kWh");
-        System.out.println("The most expensive hour this day is between " +
-                getMaxPrice(userPriceList) + " cent per kWh");
-        System.out.println("The average price this day is " +
-                getAveragePrice(userPriceList) + " cent per kWh");
+        System.out.println("Den billigaste timmen idag är mellan:  " +
+                getMinPrice(userPriceList) + " öre per kWh");
+        System.out.println("Den dyraste timmen idag är mellan: " +
+                getMaxPrice(userPriceList) + " öre per kWh");
+        System.out.println("Det genomsnittliga priset idag är: " +
+                getAveragePrice(userPriceList) + " öre per kWh");
+    }
+
+    public static void getSortedPriceList(
+            Map<String, Integer> userPriceList) {
+
+        // Takes the content from userPriceList (hashMap) and add it to a temporary arrayList
+        ArrayList<Map.Entry<String, Integer>> tempList = new ArrayList<>(userPriceList.entrySet());
+
+        tempList.sort((obj1, obj2) -> {
+            if (Objects.equals(obj1.getValue(), obj2.getValue())) {
+                return obj1.getKey().compareTo(obj2.getKey());
+            }
+            return Integer.compare(obj1.getValue(), obj2.getValue());
+        });
+
+        for(Map.Entry<String, Integer> entry : tempList) {
+            System.out.println("Tid: " + entry.getKey() +
+                    " : " + entry.getValue() + " öre per kWh");
+        }
     }
 
     private static String getMinPrice(Map<String, Integer> userPriceList) {
@@ -30,6 +49,7 @@ public class Calculator {
 
     private static String getAveragePrice(Map<String, Integer> userPriceList) {
         return String.valueOf(userPriceList.values()
-                .stream().mapToDouble(integer -> integer).average().orElse(0.0));
+                .stream().mapToDouble(integer -> integer)
+                .average().orElse(0.0));
     }
 }

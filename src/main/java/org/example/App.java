@@ -8,7 +8,7 @@ public class App {
     public static void main(String[] args) {
 
         String userMenuInput;
-        Map userPriceList = new HashMap<>();
+        Map<String, Integer> userPriceList = new HashMap<>();
 
         do{
             userMenuInput = Menu.printMenu();
@@ -21,7 +21,9 @@ public class App {
                     break;
                 case "2":
                     Calculator.maxMinAverage(userPriceList);
-
+                    break;
+                case "3":
+                    Calculator.getSortedPriceList(userPriceList);
                     break;
             }
         }while(!userMenuInput.equalsIgnoreCase("e"));

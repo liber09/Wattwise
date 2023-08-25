@@ -14,8 +14,6 @@ public class Menu {
         System.out.println("4. Bästa Laddningstid (4h)");
         System.out.println("e. Avsluta");
 
-        String userMenuInput = scanner.nextLine();
-
-        return userMenuInput;
+        return scanner.nextLine();
     }
 }
