@@ -4,20 +4,21 @@ import java.util.*;
 
 public class Calculator {
 
-    public static void maxMinAverage(Map<String, Integer> userPriceList) {
+    public static void maxMinAverage(Map<String, Integer> priceList) {
         System.out.println("Den billigaste timmen idag är mellan:  " +
-                getMinPrice(userPriceList) + " öre per kWh");
+                getMinPrice(priceList) + " öre per kWh");
         System.out.println("Den dyraste timmen idag är mellan: " +
-                getMaxPrice(userPriceList) + " öre per kWh");
+                getMaxPrice(priceList) + " öre per kWh");
         System.out.println("Det genomsnittliga priset idag är: " +
-                String.format("%.2f", getAveragePrice(userPriceList)) + " öre per kWh");
+                String.format("%.2f", getAveragePrice(priceList)) + " öre per kWh");
     }
 
     public static void getSortedPriceList(
-            Map<String, Integer> userPriceList) {
+            Map<String, Integer> priceList) {
 
-        // Takes the content from userPriceList (hashMap) and add it to a temporary arrayList
-        ArrayList<Map.Entry<String, Integer>> tempList = new ArrayList<>(userPriceList.entrySet());
+
+        // Takes the content from priceList (hashMap) and add it to a temporary arrayList
+        ArrayList<Map.Entry<String, Integer>> tempList = new ArrayList<>(priceList.entrySet());
 
         tempList.sort((obj1, obj2) -> {
             if (Objects.equals(obj1.getValue(), obj2.getValue())) {
@@ -32,9 +33,9 @@ public class Calculator {
         }
     }
 
-    public static void bestChargingHours(int numberOfHours, Map<String, Integer> userPriceList) {
-        // Takes the content from userPriceList (hashMap) and add it to a temporary arrayList
-        ArrayList<Map.Entry<String, Integer>> tempList = new ArrayList<>(userPriceList.entrySet());
+    public static void bestChargingHours(int numberOfHours, Map<String, Integer> priceList) {
+        // Takes the content from priceList (hashMap) and add it to a temporary arrayList
+        ArrayList<Map.Entry<String, Integer>> tempList = new ArrayList<>(priceList.entrySet());
 
         tempList.sort((obj1, obj2) -> {
             if (Objects.equals(obj1.getKey(), obj2.getKey())) {
@@ -49,22 +50,22 @@ public class Calculator {
         }
     }
 
-    private static String getMinPrice(Map<String, Integer> userPriceList) {
-        String minKey = Collections.min(userPriceList.entrySet(),
+    private static String getMinPrice(Map<String, Integer> priceList) {
+        String minKey = Collections.min(priceList.entrySet(),
                 Map.Entry.comparingByValue()).getKey();
-        Integer minValue = userPriceList.get(minKey);
+        Integer minValue = priceList.get(minKey);
         return minKey + ", " + minValue;
     }
 
-    private static String getMaxPrice(Map<String, Integer> userPriceList) {
-        String maxKey = Collections.max(userPriceList.entrySet(),
+    private static String getMaxPrice(Map<String, Integer> priceList) {
+        String maxKey = Collections.max(priceList.entrySet(),
                 Map.Entry.comparingByValue()).getKey();
-        Integer maxValue = userPriceList.get(maxKey);
+        Integer maxValue = priceList.get(maxKey);
         return maxKey + ", " + maxValue;
     }
 
-    private static Double getAveragePrice(Map<String, Integer> userPriceList) {
-        return userPriceList.values()
+    private static Double getAveragePrice(Map<String, Integer> priceList) {
+        return priceList.values()
                 .stream().mapToDouble(integer -> integer)
                 .average().orElse(0.0);
     }

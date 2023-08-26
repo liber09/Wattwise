@@ -8,20 +8,20 @@ public class App {
     public static void main(String[] args) {
 
         String userMenuInput;
-        Map<String, Integer> userPriceList = new HashMap<>();
+        Map<String, Integer> priceList = new HashMap<>();
 
         do{
             userMenuInput = Menu.printMenu();
 
             switch (userMenuInput) {
                 case "1" -> {
-                    userPriceList = PriceData.getDataFromUser();
-                    System.out.println(userPriceList);
+                    priceList = PriceData.getDataFromUser();
+                    System.out.println(priceList);
                 }
-                case "2" -> Calculator.maxMinAverage(userPriceList);
-                case "3" -> Calculator.getSortedPriceList(userPriceList);
-                case "4" -> Calculator.bestChargingHours(4, userPriceList);
-                case "5" -> userPriceList = PriceData.getDataFromFile();
+                case "2" -> Calculator.maxMinAverage(priceList);
+                case "3" -> Calculator.getSortedPriceList(priceList);
+                case "4" -> Calculator.bestChargingHours(4, priceList);
+                case "5" -> priceList = PriceData.getDataFromFile();
             }
         }while(!userMenuInput.equalsIgnoreCase("e"));
 
