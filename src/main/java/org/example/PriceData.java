@@ -2,7 +2,6 @@ package org.example;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -38,8 +37,7 @@ public class PriceData {
 
     public static Map<String,Integer> getDataFromFile() {
         Map<String, Integer> filePriceList = new HashMap<>();
-        String timeInterval = "";
-        Scanner scanner = null;
+        Scanner scanner;
         try {
             File file = new File("priser.csv");
             scanner = new Scanner(file);
@@ -49,6 +47,7 @@ public class PriceData {
         }
 
         int i = 0;
+        String timeInterval;
         while (scanner.hasNext()) {
             if (i < 9) {
                 timeInterval = createTimeInterval(i);
@@ -62,11 +61,12 @@ public class PriceData {
             i++;
             filePriceList.put(timeInterval, scanner.nextInt());
         }
+        System.out.println("Priser inlästa..");
         return filePriceList;
     }
 
     private static String createTimeInterval(int i) {
-        String timeInterval = "";
+        String timeInterval;
         if (i < 9) {
             timeInterval = "0" + i + " - 0" + (i + 1);
         } else if (i == 9) {

@@ -44,9 +44,23 @@ public class Calculator {
             return CharSequence.compare(obj1.getKey(), obj2.getKey());
         });
 
-        for(Map.Entry<String, Integer> entry : tempList) {
-            System.out.println("Tid: " + entry.getKey() +
-                    " : " + entry.getValue() + " öre per kWh");
+        int lowestPrice = 999999999;
+        int tempPrice = 0;
+        int bestStartingHour = 0;
+        for(int i = 0; i<=20; i++) {
+            for(int j = 0; j<=numberOfHours-1; j++) {
+                tempPrice += tempList.get(i+j).getValue();
+            }
+            if(tempPrice < lowestPrice){
+                lowestPrice = tempPrice;
+                bestStartingHour = i;
+            }
+            tempPrice = 0;
+        }
+        if (bestStartingHour <=9){
+            System.out.println("Den bästa timmen att påbörja laddningen av din elbil är kl 0" + bestStartingHour + " då snittpriset för 4 timmars laddning då är " + (lowestPrice/4) + " öre per kWh");
+        }else{
+            System.out.println("Den bästa timmen att påbörja laddningen av din elbil är kl " + bestStartingHour + " då snittpriset för 4 timmars laddning då är " + (lowestPrice/4) + " öre per kWh");
         }
     }
 
