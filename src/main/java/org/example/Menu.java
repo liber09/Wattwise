@@ -12,6 +12,7 @@ public class Menu {
         System.out.println("2. Min, Max, Medel");
         System.out.println("3. Sortera");
         System.out.println("4. Bästa Laddningstid (4h)");
+        System.out.println("5. Läs in priser från fil");
         System.out.println("e. Avsluta");
 
         return scanner.nextLine();

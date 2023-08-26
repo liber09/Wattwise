@@ -21,6 +21,7 @@ public class App {
                 case "2" -> Calculator.maxMinAverage(userPriceList);
                 case "3" -> Calculator.getSortedPriceList(userPriceList);
                 case "4" -> Calculator.bestChargingHours(4, userPriceList);
+                case "5" -> userPriceList = PriceData.getDataFromFile();
             }
         }while(!userMenuInput.equalsIgnoreCase("e"));
 
