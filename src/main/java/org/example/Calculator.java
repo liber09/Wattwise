@@ -47,8 +47,8 @@ public class Calculator {
         int lowestPrice = 999999999;
         int tempPrice = 0;
         int bestStartingHour = 0;
-        for(int i = 0; i<=20; i++) {
-            for(int j = 0; j<=numberOfHours-1; j++) {
+        for(int i = 0; i <= 23 - numberOfHours; i++) {
+            for(int j = 0; j <= numberOfHours - 1; j++) {
                 tempPrice += tempList.get(i+j).getValue();
             }
             if(tempPrice < lowestPrice){
@@ -57,10 +57,14 @@ public class Calculator {
             }
             tempPrice = 0;
         }
-        if (bestStartingHour <=9){
-            System.out.println("Den bästa timmen att påbörja laddningen av din elbil är kl 0" + bestStartingHour + " då snittpriset för 4 timmars laddning då är " + (lowestPrice/4) + " öre per kWh");
+        if(bestStartingHour <=9){
+            if(bestStartingHour+numberOfHours <=9){
+                System.out.println("Den bästa tiden för laddningen är kl 0" + bestStartingHour + " - 0" + (bestStartingHour+numberOfHours) + " \nsnittpriset för " + numberOfHours + " timmars laddning är " + (lowestPrice/4) + " öre per kWh");
+            }else{
+                System.out.println("Den bästa tiden för laddningen är kl 0" + bestStartingHour + " - " + (bestStartingHour+numberOfHours) + " \nsnittpriset för " + numberOfHours + " timmars laddning är " + (lowestPrice/4) + " öre per kWh");
+            }
         }else{
-            System.out.println("Den bästa timmen att påbörja laddningen av din elbil är kl " + bestStartingHour + " då snittpriset för 4 timmars laddning då är " + (lowestPrice/4) + " öre per kWh");
+            System.out.println("Den bästa tiden för laddningen är kl " + bestStartingHour + " - " + (bestStartingHour+numberOfHours) + " \nsnittpriset för " + numberOfHours + " timmars laddning är " + (lowestPrice/4) + " öre per kWh");
         }
     }
 
