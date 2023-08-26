@@ -9,8 +9,6 @@ import java.util.Scanner;
 
 public class PriceData {
 
-
-
     public static Map<String, Integer> getDataFromUser() {
         Scanner scanner = new Scanner(System.in);
         Map<String, Integer> userPriceList = new HashMap<>();
@@ -43,7 +41,6 @@ public class PriceData {
             } while(!correctInput);
         }
         System.out.println("Tack..");
-        scanner.close();
         return userPriceList;
     }
 
@@ -74,7 +71,6 @@ public class PriceData {
             filePriceList.put(timeInterval, scanner.nextInt());
         }
         System.out.println("Priser inlästa..");
-        scanner.close();
         return filePriceList;
     }
 
