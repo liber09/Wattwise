@@ -13,18 +13,14 @@ public class App {
         do{
             userMenuInput = Menu.printMenu();
 
-            switch(userMenuInput){
-
-                case "1":
+            switch (userMenuInput) {
+                case "1" -> {
                     userPriceList = PriceData.getDataFromUser();
                     System.out.println(userPriceList);
-                    break;
-                case "2":
-                    Calculator.maxMinAverage(userPriceList);
-                    break;
-                case "3":
-                    Calculator.getSortedPriceList(userPriceList);
-                    break;
+                }
+                case "2" -> Calculator.maxMinAverage(userPriceList);
+                case "3" -> Calculator.getSortedPriceList(userPriceList);
+                case "4" -> Calculator.bestChargingHours(4, userPriceList);
             }
         }while(!userMenuInput.equalsIgnoreCase("e"));
 

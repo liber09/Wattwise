@@ -32,6 +32,23 @@ public class Calculator {
         }
     }
 
+    public static void bestChargingHours(int numberOfHours, Map<String, Integer> userPriceList) {
+        // Takes the content from userPriceList (hashMap) and add it to a temporary arrayList
+        ArrayList<Map.Entry<String, Integer>> tempList = new ArrayList<>(userPriceList.entrySet());
+
+        tempList.sort((obj1, obj2) -> {
+            if (Objects.equals(obj1.getKey(), obj2.getKey())) {
+                return obj1.getValue().compareTo(obj2.getValue());
+            }
+            return CharSequence.compare(obj1.getKey(), obj2.getKey());
+        });
+
+        for(Map.Entry<String, Integer> entry : tempList) {
+            System.out.println("Tid: " + entry.getKey() +
+                    " : " + entry.getValue() + " öre per kWh");
+        }
+    }
+
     private static String getMinPrice(Map<String, Integer> userPriceList) {
         String minKey = Collections.min(userPriceList.entrySet(),
                 Map.Entry.comparingByValue()).getKey();

@@ -18,7 +18,7 @@ public class PriceData {
                 timeInterval = "0" + i + " - 0" + (i + 1);
                 System.out.println("Ange pris kl: " + timeInterval);
             } else if (i == 9) {
-                timeInterval = i + " - " + (i + 1);
+                timeInterval = "0" + i + " - " + (i + 1);
                 System.out.println("Ange pris kl: 0" + timeInterval);
             }else if(i == 23) {
                 timeInterval = i + " - 00";
