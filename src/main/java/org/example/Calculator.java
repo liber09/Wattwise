@@ -16,7 +16,6 @@ public class Calculator {
     public static void getSortedPriceList(
             Map<String, Integer> priceList) {
 
-
         // Takes the content from priceList (hashMap) and add it to a temporary arrayList
         ArrayList<Map.Entry<String, Integer>> tempList = new ArrayList<>(priceList.entrySet());
 
@@ -34,6 +33,7 @@ public class Calculator {
     }
 
     public static void bestChargingHours(int numberOfHours, Map<String, Integer> priceList) {
+
         // Takes the content from priceList (hashMap) and add it to a temporary arrayList
         ArrayList<Map.Entry<String, Integer>> tempList = new ArrayList<>(priceList.entrySet());
 

@@ -3,6 +3,7 @@ package org.example;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -29,9 +30,20 @@ public class PriceData {
                 timeInterval = createTimeInterval(i);
                 System.out.println("Ange pris kl: " + timeInterval);
             }
-            userPriceList.put(timeInterval, scanner.nextInt());
+
+            boolean correctInput = false;
+            do {
+                try {
+                    userPriceList.put(timeInterval, scanner.nextInt());
+                    correctInput = true;
+                } catch(InputMismatchException e) {
+                    System.out.println("\"" + scanner.nextLine() + "\"" + " är en felaktig inmatning, ange endast ett heltal");
+                    System.out.println("Ange pris kl: " + timeInterval);
+                }
+            } while(!correctInput);
         }
         System.out.println("Tack..");
+        scanner.close();
         return userPriceList;
     }
 
@@ -62,6 +74,7 @@ public class PriceData {
             filePriceList.put(timeInterval, scanner.nextInt());
         }
         System.out.println("Priser inlästa..");
+        scanner.close();
         return filePriceList;
     }
 
